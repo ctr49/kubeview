@@ -1,7 +1,7 @@
 # ================================================================================================
 # === Stage 1: Build and bundle the Vue.js app with Vue CLI 3 ====================================
 # ================================================================================================
-FROM node:16-alpine as vue-build
+FROM node:lts-alpine as vue-build
 ARG sourceDir="web/client"
 
 WORKDIR /build
@@ -22,7 +22,7 @@ RUN npm run build
 # ================================================================================================
 # === Stage 2: Build Golang API server and host for Vue app ======================================
 # ================================================================================================
-FROM golang:1.17-alpine as go-build
+FROM golang:1.21-alpine as go-build
 WORKDIR /build
 ARG GO_PACKAGE="github.com/ctr49/kubeview/cmd/server"
 ARG VERSION="0.0.0"
